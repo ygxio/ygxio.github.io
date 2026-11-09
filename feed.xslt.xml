@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  exclude-result-prefixes="atom">
+  <xsl:output method="html" encoding="utf-8" indent="yes" doctype-system="about:legacy-compat"/>
+
+  <xsl:template match="/atom:feed">
+    <html lang="en">
+      <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="color-scheme" content="light dark"/>
+        <title>RSS feed · <xsl:value-of select="atom:title"/></title>
+        <style>
+          :root { --bg:#fdfcfa; --fg:#1c1b19; --muted:#7a776f; --border:#e6e2da; --accent:#c2410c; --soft:#f5f3ef; }
+          @media (prefers-color-scheme: dark) {
+            :root { --bg:#131312; --fg:#e8e6e1; --muted:#8c8981; --border:#2b2a27; --accent:#fb923c; --soft:#1b1b19; }
+          }
+          * { box-sizing: border-box; }
+          body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+          .wrap { max-width:46rem; margin:0 auto; padding:3rem 1.25rem 4rem; }
+          a { color:var(--accent); text-decoration:none; }
+          a:hover { text-decoration:underline; }
+          .notice { background:var(--soft); border:1px solid var(--border); border-radius:8px; padding:1rem 1.2rem; font-size:.92rem; }
+          .notice code { font-family:"JetBrains Mono", ui-monospace, monospace; font-size:.85em; word-break:break-all; }
+          h1 { font-size:2rem; letter-spacing:-.02em; margin:2rem 0 .25rem; }
+          .sub { color:var(--muted); margin:0 0 2.5rem; }
+          ul { list-style:none; padding:0; margin:0; }
+          li { padding:1rem 0; border-bottom:1px solid var(--border); }
+          li:last-child { border-bottom:0; }
+          .t { font-weight:600; font-size:1.05rem; color:var(--fg); }
+          .t:hover { color:var(--accent); text-decoration:none; }
+          time { display:block; color:var(--muted); font-size:.85rem; margin-bottom:.15rem; }
+          .s { margin:.3rem 0 0; color:var(--muted); font-size:.93rem; }
+        </style>
+      </head>
+      <body>
+        <div class="wrap">
+          <div class="notice">
+            <strong>This is an RSS (Atom) feed.</strong>
+            Copy this page's URL into your feed reader to get new posts:
+            <br/><code><xsl:value-of select="atom:link[@rel='self']/@href"/></code>
+          </div>
+          <h1><xsl:value-of select="atom:title"/></h1>
+          <p class="sub">
+            <xsl:value-of select="atom:subtitle"/>
+            · <a href="{atom:link[@rel='alternate']/@href}">Visit the blog →</a>
+          </p>
+          <ul>
+            <xsl:for-each select="atom:entry">
+              <li>
+                <time><xsl:value-of select="substring(atom:published, 1, 10)"/></time>
+                <a class="t" href="{atom:link[@rel='alternate']/@href}"><xsl:value-of select="atom:title"/></a>
+                <xsl:if test="atom:summary">
+                  <p class="s"><xsl:value-of select="atom:summary"/></p>
+                </xsl:if>
+              </li>
+            </xsl:for-each>
+          </ul>
+        </div>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>

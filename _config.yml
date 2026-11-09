@@ -36,6 +36,8 @@ plugins:
 
 feed:
   path: feed.xml
+  xsl: true
+  excerpt_only: false
 
 defaults:
   - scope:
