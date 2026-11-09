@@ -9,4 +9,4 @@ Recent work includes performance fixes in [PgDog](https://github.com/pgdogdev/pg
 
 - GitHub: [ygxio](https://github.com/ygxio)
 - Email: yogeshsingla481 [at] gmail [dot] com
-- RSS: [feed.xml]({{ '/feed.xml' | relative_url }})
+- RSS: [subscribe]({{ '/subscribe/' | relative_url }})

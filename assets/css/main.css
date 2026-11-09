@@ -352,3 +352,12 @@ code, pre, kbd { font-family: var(--font-mono); font-feature-settings: "calt" 0,
   .prose { font-size: 11pt; }
   .prose a::after { content: " (" attr(href) ")"; font-size: .8em; color: #666; }
 }
+
+/* ---------- Subscribe ---------- */
+.feed-url {
+  display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+  border: 1px solid var(--border); background: var(--code-bg); border-radius: var(--radius);
+  padding: .6rem .6rem .6rem 1rem; font-family: var(--font-ui);
+}
+.feed-url code { background: none !important; padding: 0 !important; font-size: .9rem !important; overflow-wrap: anywhere; }
+.feed-url .copy-btn { border-color: var(--border); flex-shrink: 0; }
