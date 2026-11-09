@@ -1,21 +1,41 @@
-title: Yogesh Blog
-description: Notes, essays, and build logs by Yogesh.
-url: https://yogesh1801.github.io
-author: Yogesh
+title: Yogesh Singla
+tagline: Notes on databases, systems, and performance engineering.
+description: Technical writing on databases, Rust, systems programming, and making things fast.
+author:
+  name: Yogesh Singla
+  github: ygxio
+  email: yogeshsingla481 [at] gmail [dot] com
+
+# Site address. If the repo is named ygxio.github.io keep baseurl empty.
+# If it stays a project repo (e.g. yogesh1801.github.io), set baseurl to "/yogesh1801.github.io".
+url: https://ygxio.github.io
+baseurl: ""
+
 timezone: Asia/Kolkata
+lang: en
+
+permalink: /:title/
+
 markdown: kramdown
-permalink: /:year/:month/:day/:title/
-show_excerpts: true
-theme: minima
-header_pages:
-  - about.md
-  - archive.md
-  - tags.md
+highlighter: rouge
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_backlink: "↩"
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    block:
+      line_numbers: false
 
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+
+feed:
+  path: feed.xml
 
 defaults:
   - scope:
@@ -23,7 +43,15 @@ defaults:
       type: posts
     values:
       layout: post
+      toc: true
+  - scope:
+      path: ""
+    values:
+      layout: page
 
-minima:
-  social_links:
-    rss: feed.xml
+exclude:
+  - README.md
+  - scripts/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/

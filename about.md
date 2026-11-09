@@ -1,9 +1,12 @@
 ---
-layout: page
 title: About
 permalink: /about/
 ---
 
-This is my blog on GitHub Pages.
+I'm Yogesh Singla. I like finding out why software is slow and making it faster, especially databases, connection poolers and storage engines.
 
-I write about engineering, experiments, and things I learn.
+Recent work includes performance fixes in [PgDog](https://github.com/pgdogdev/pgdog), a Rust connection pooler for PostgreSQL.
+
+- GitHub: [ygxio](https://github.com/ygxio)
+- Email: yogeshsingla481 [at] gmail [dot] com
+- RSS: [feed.xml]({{ '/feed.xml' | relative_url }})

@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<section class="wrap home">
+  <div class="intro">
+    <h1>{{ site.author.name }}</h1>
+    <p>{{ site.tagline }}</p>
+    <div class="prose intro-body">{{ content }}</div>
+  </div>
+
+  <h2 class="section-title">Writing</h2>
+  {% include post-list.html posts=site.posts %}
+</section>

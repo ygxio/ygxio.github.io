@@ -1,0 +1,50 @@
+---
+layout: default
+---
+<div class="progress" aria-hidden="true"><span></span></div>
+<div class="post-grid{% if page.toc == false %} no-toc{% endif %}">
+  <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="headline">{{ page.title | escape }}</h1>
+      {% if page.description %}<p class="post-lede">{{ page.description | escape }}</p>{% endif %}
+      <p class="post-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: '%B %-d, %Y' }}</time>
+        <span aria-hidden="true">·</span>
+        <span>{% include reading-time.html content=content %}</span>
+        {% if page.updated %}<span aria-hidden="true">·</span>
+        <span>Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: '%b %-d, %Y' }}</time></span>{% endif %}
+      </p>
+      {% if page.tags.size > 0 %}
+      <p class="tags">
+        {% for tag in page.tags %}<a class="tag" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>{% endfor %}
+      </p>
+      {% endif %}
+    </header>
+
+    <div class="prose" itemprop="articleBody">
+      {{ content }}
+    </div>
+
+    <footer class="post-footer">
+      <p class="feedback">
+        Found a mistake or have a thought? Email {{ site.author.email }}
+        or open an issue on <a href="https://github.com/{{ site.author.github }}">GitHub</a>.
+      </p>
+      <nav class="pager">
+        {% if page.previous %}
+        <a class="pager-prev" href="{{ page.previous.url | relative_url }}"><span>← Older</span>{{ page.previous.title | escape }}</a>
+        {% else %}<span></span>{% endif %}
+        {% if page.next %}
+        <a class="pager-next" href="{{ page.next.url | relative_url }}"><span>Newer →</span>{{ page.next.title | escape }}</a>
+        {% endif %}
+      </nav>
+    </footer>
+  </article>
+
+  {% unless page.toc == false %}
+  <aside class="toc" aria-label="Table of contents">
+    <p class="toc-title">On this page</p>
+    <nav id="toc"></nav>
+  </aside>
+  {% endunless %}
+</div>

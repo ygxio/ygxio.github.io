@@ -1,81 +1,55 @@
-# yogesh1801.github.io
+# Blog
 
-A simple blog on GitHub Pages — Jekyll + minima theme, deployed via GitHub Actions.
+Plain Jekyll, no theme, built by GitHub Pages. Custom layouts in `_layouts/`, all styling in `assets/css/main.css`, small enhancements in `assets/js/main.js`.
 
-## Write a new post
-
-```bash
-./scripts/new-post.sh "My post title"
-```
-
-This creates `_posts/YYYY-MM-DD-my-post-title.md` with front matter filled in. Edit the file, commit, push — GitHub Actions builds and deploys.
-
-For a draft (won't be published until moved to `_posts/`):
+## New post
 
 ```bash
-./scripts/new-post.sh "Half-baked idea" --draft
+./scripts/new-post.sh "My post title"           # _posts/YYYY-MM-DD-my-post-title.md
+./scripts/new-post.sh "Half-baked idea" --draft  # _drafts/half-baked-idea.md
 ```
 
-## Publish
+Commit and push to `main`; GitHub Pages rebuilds. URL is `/<slug>/`.
+
+## Front matter
+
+```yaml
+title: "Large futures in Rust"
+description: "One line shown under the title, on the home page and in link previews."
+date: 2026-09-01 22:00:00 +0530
+updated: 2026-09-10        # optional, shows "Updated ..."
+tags: [rust, performance]
+math: true                 # optional, loads KaTeX
+mermaid: true              # optional, renders ```mermaid blocks
+toc: false                 # optional, hides "On this page"
+image: /assets/img/x.png   # optional, social preview card
+```
+
+## Writing features
+
+- **Code**: fenced blocks with a language (```` ```rust ````) get syntax highlighting, a language label and a copy button. Use ```` ```diff ```` for diffs.
+- **Images**: `![Caption text](url)` on its own line becomes a figure with the alt text as caption; click to zoom. Add `{: .wide}` on the next line for a wider image. Put local images in `assets/img/`.
+- **Callouts**:
+  ```markdown
+  > **Note:** something worth flagging.
+  {: .note }
+  ```
+  Also `.tip` and `.warning`.
+- **Footnotes**: `text[^1]` and `[^1]: the note`.
+- **Tables**: GFM tables; wide ones scroll horizontally.
+- **Math** (`math: true`): `\( inline \)` and `$$ display $$`.
+- **TOC**: built from `##` and `###` headings, shown on wide screens. Headings get `#` anchor links.
+- Dark mode, reading time, reading progress bar, RSS (`/feed.xml`), sitemap, SEO/OpenGraph tags.
+
+## Config
+
+`_config.yml`: `title`, `tagline`, `author`, `url`, `baseurl`.
+
+If the repo is named `<user>.github.io`, keep `baseurl: ""`. For a project repo, set `baseurl: "/<repo-name>"`.
+
+## Local preview
 
 ```bash
-git add .
-git commit -m "Add post: my title"
-git push
+bundle install
+bundle exec jekyll serve --drafts --livereload
 ```
-
-The site rebuilds automatically. Watch progress in the repo's **Actions** tab. Live at:
-
-https://yogesh1801.github.io/
-
-## What's in the box
-
-- **`_posts/`** — published posts (`YYYY-MM-DD-slug.md`)
-- **`_drafts/`** — unpublished drafts (no date prefix)
-- **`_includes/header.html`** — site header with theme toggle
-- **`_includes/head.html`** — `<head>` with SEO tags
-- **`scripts/new-post.sh`** — scaffolds a post or draft
-- **`archive.md`** → `/archive/` — all posts grouped by year
-- **`tags.md`** → `/tags/` — posts grouped by tag
-- **`about.md`** → `/about/` — about page
-- **`_config.yml`** — site settings
-- **`.github/workflows/deploy.yml`** — build + deploy on push to `main`
-
-## Plugins enabled
-
-- `jekyll-feed` — RSS at `/feed.xml`
-- `jekyll-seo-tag` — `<title>`, OG, Twitter cards
-- `jekyll-sitemap` — `/sitemap.xml`
-
-All three are on the GitHub Pages whitelist, so they build without a Gemfile.
-
-## First-time setup (already done)
-
-If you ever start fresh:
-
-1. Create a repo named `<username>.github.io`.
-2. Push these files to `main`.
-3. In **Settings → Pages**, set **Source** to **GitHub Actions**.
-
-## Edit site details
-
-Update in `_config.yml`:
-
-- `title` — site title
-- `description` — used by SEO + RSS
-- `author` — your name
-- `url` — full https URL to the site
-- `timezone` — IANA timezone (e.g. `Asia/Kolkata`)
-
-## Local preview (optional)
-
-You don't need this to publish, but if you want to preview locally:
-
-```bash
-gem install bundler jekyll
-bundle init
-bundle add jekyll jekyll-feed jekyll-seo-tag jekyll-sitemap
-bundle exec jekyll serve --drafts
-```
-
-Open http://localhost:4000. The `--drafts` flag includes `_drafts/` in the build.
